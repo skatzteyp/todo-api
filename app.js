@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(function(req, res, next) {
   const token = (req.headers && req.headers.authorization) || '';
 
-  if (token.includes('momon:gwapo')) {
+  if (req.originalUrl === '/users' || token.includes('momon:gwapo')) {
     next();
   } else {
     res.sendStatus(401);
