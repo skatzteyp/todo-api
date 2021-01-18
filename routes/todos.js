@@ -33,6 +33,22 @@ router.put('/', async function(req, res, __) {
   res.send(todo);
 });
 
+router.put('/:id', async function(req, res, __) {
+  const { id } = req.params;
+  const { title, description } = req.body;
+
+  const todo = await Todo.update(
+    { title, description },
+    {
+      where: {
+        id
+      }
+    }
+  );
+
+  res.send(todo);
+});
+
 router.delete('/:id', async function(req, res, __) {
   const { id } = req.params;
 
